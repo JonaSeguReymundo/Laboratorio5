@@ -13,7 +13,8 @@ fun TaskCard(
     title: String,
     description: String,
     endDate: Date,
-    checked: Boolean
+    checked: Boolean,
+    onCheckedChange: () -> Unit
 ) {
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     Card(
@@ -21,11 +22,16 @@ fun TaskCard(
             .padding(8.dp)
             .fillMaxWidth()
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = title, style = MaterialTheme.typography.titleLarge)
-            Text(text = description, style = MaterialTheme.typography.bodyMedium)
-            Text(text = "Fecha límite: ${dateFormat.format(endDate)}")
-            Text(text = if (checked) "Completada" else "Pendiente")
+        Row(modifier = Modifier.padding(16.dp)) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = title, style = MaterialTheme.typography.titleLarge)
+                Text(text = description, style = MaterialTheme.typography.bodyMedium)
+                Text(text = "Fecha límite: ${dateFormat.format(endDate)}")
+            }
+            Checkbox(
+                checked = checked,
+                onCheckedChange = { onCheckedChange() }
+            )
         }
     }
 }

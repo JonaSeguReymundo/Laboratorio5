@@ -13,4 +13,9 @@ class GeneralViewModel : ViewModel() {
     fun addTask(task: Task) {
         _tasks.value = _tasks.value.toMutableList().apply { add(task) }
     }
+
+    fun removeTask(task: Task) {
+        _tasks.value = _tasks.value.toMutableList().apply { remove(task) }
+    }
+
 }
