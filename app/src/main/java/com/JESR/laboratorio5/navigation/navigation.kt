@@ -10,10 +10,16 @@ import com.JESR.laboratorio5.ui.components.TODOScreen
 import com.JESR.laboratorio5.viewmodel.GeneralViewModel
 
 @Composable
-fun AppNavigation(navController: NavHostController, modifier: Modifier) {
-    val viewModel: GeneralViewModel = viewModel()
-
-    NavHost(navController = navController, startDestination = "todo") {
+fun AppNavigation(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    viewModel: GeneralViewModel
+) {
+    NavHost(
+        navController = navController,
+        startDestination = "todo",
+        modifier = modifier
+    ) {
         composable("todo") {
             TODOScreen(viewModel = viewModel)
         }
